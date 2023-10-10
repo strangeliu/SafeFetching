@@ -10,7 +10,7 @@ public protocol Fetchable: NSManagedObject {}
 extension Fetchable {
 
     /// `NSFetchRequest` to fetch the entity
-    public static func newFetchRequest() -> NSFetchRequest<Self> { .init(entityName: String(describing: Self.self)) }
+    public static func newFetchRequest() -> NSFetchRequest<Self> { .init(entityName: entity().name ?? String(describing: Self.self)) }
 
     public static func request() -> Builders.PreRequest<Self, CreationStep, Self> {
         Builders.PreRequest(request: newFetchRequest())
